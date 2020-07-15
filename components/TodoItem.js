@@ -22,7 +22,8 @@ const styles = StyleSheet.create({
 		borderColor: '#bbb',
 		borderWidth: 1,
 		borderStyle: 'solid',
-		borderRadius: 10
+		borderRadius: 10,
+		marginRight: 10
 	},
 	itemText: {
 		marginLeft: 10
