@@ -1,3 +1,6 @@
+Screenshots:
+![image](https://user-images.githubusercontent.com/42489689/87580487-3b283780-c6f5-11ea-9635-12a450f24801.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
