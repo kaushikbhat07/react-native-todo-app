@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, View, TextInput, FlatList } from 'react-native';
 import Header from './components/Header';
 import TodoItem from './components/TodoItem';
+import AddTodo from './components/AddTodo';
 
 export default function App() {
 	const [todos, setTodos] = useState([
@@ -12,8 +13,19 @@ export default function App() {
 
 	const pressHandler = (key) => {
 		setTodos((prevTodos) => {
-			// return console.log(prevTodos);
 			return prevTodos.filter(todo => todo.key != key);
+		})
+	}
+
+	const addTodoHandler = (text) => {
+		setTodos((prevTodos) => {
+			return [
+				{
+					text: text,
+					key: Math.random().toString()
+				},
+				...prevTodos
+			]
 		})
 	}
 
@@ -23,13 +35,13 @@ export default function App() {
 			<View style={styles.content}>
 				{/* to-do form */}
 				<View style={styles.list}>
-					{/* flat list */}
+					<AddTodo addTodoHandler={addTodoHandler} />
 					<FlatList
 						data={todos}
 						renderItem={({ item }) => (
-							<TodoItem 
-							item={item} 
-							pressHandler={pressHandler}
+							<TodoItem
+								item={item}
+								pressHandler={pressHandler}
 							/>
 						)}
 					/>
