@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, FlatList } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList, Alert } from 'react-native';
 import Header from './components/Header';
 import TodoItem from './components/TodoItem';
 import AddTodo from './components/AddTodo';
@@ -18,15 +18,21 @@ export default function App() {
 	}
 
 	const addTodoHandler = (text) => {
-		setTodos((prevTodos) => {
-			return [
-				{
-					text: text,
-					key: Math.random().toString()
-				},
-				...prevTodos
-			]
-		})
+		if(text.length > 0) {
+			setTodos((prevTodos) => {
+				return [
+					{
+						text: text,
+						key: Math.random().toString()
+					},
+					...prevTodos
+				]
+			})
+		} else {
+			Alert.alert('OOPS!', 'Text box cannot be empty', [
+				{ text: 'Got it' }
+			]);
+		}
 	}
 
 	return (
