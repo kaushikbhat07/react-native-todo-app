@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, FlatList, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, FlatList, Alert, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Header from './components/Header';
 import TodoItem from './components/TodoItem';
 import AddTodo from './components/AddTodo';
@@ -18,7 +18,7 @@ export default function App() {
 	}
 
 	const addTodoHandler = (text) => {
-		if(text.length > 0) {
+		if (text.length > 0) {
 			setTodos((prevTodos) => {
 				return [
 					{
@@ -36,36 +36,40 @@ export default function App() {
 	}
 
 	return (
-		<View style={styles.container}>
-			<Header />
-			<View style={styles.content}>
-				{/* to-do form */}
-				<View style={styles.list}>
-					<AddTodo addTodoHandler={addTodoHandler} />
-					<FlatList
-						data={todos}
-						renderItem={({ item }) => (
-							<TodoItem
-								item={item}
-								pressHandler={pressHandler}
-							/>
-						)}
-					/>
+		<TouchableWithoutFeedback onPress={() => Keyboard.dismiss()}>
+			<View style={styles.container}>
+				<Header />
+				<View style={styles.content}>
+					{/* to-do form */}
+					<View style={styles.list}>
+						<AddTodo addTodoHandler={addTodoHandler} />
+						<FlatList
+							data={todos}
+							renderItem={({ item }) => (
+								<TodoItem
+									item={item}
+									pressHandler={pressHandler}
+								/>
+							)}
+						/>
+					</View>
 				</View>
 			</View>
-		</View>
+		</TouchableWithoutFeedback>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: '#fff'
+		backgroundColor: '#f1faee'
 	},
 	content: {
+		flex: 1,
 		padding: 40,
 	},
 	list: {
+		flex: 1,
 		marginTop: 20
 	}
 });
